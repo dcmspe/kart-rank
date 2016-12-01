@@ -38,23 +38,43 @@ import br.com.dcmspe.kart_rank.helpers.CSVObject;
  	private void createEntities(List<CSVObject> csvObjects){
  		for (CSVObject csvObject : csvObjects) {
  			
- 			String pilotCode = csvObject.getColumn2();
- 			Pilot pilot = pilots.get(pilotCode);
- 			if(pilots.isEmpty()){
- 				this.pilots.put(pilotCode, pilot);
- 			}else if(pilots.get(pilotCode) == null){
- 				pilots.put(pilotCode, pilot);
- 			}
+ 			Pilot pilot = createPilot(csvObject);
  			
- 			LocalTime localTime = LocalTime.parse(csvObject.getColumn1()); 
- 			Integer lapNumber = new Integer(csvObject.getColumn4());
- 			LocalTime timeLap = LocalTime.parse(csvObject.getColumn5());
- 			Double averageTimeLap = Double.valueOf(csvObject.getColumn6());
+ 			Lap lap = createLap(csvObject, pilot);
  			
- 			Lap lap = new Lap(lapNumber, pilot, localTime, timeLap, averageTimeLap);
  			laps.add(lap);
+ 			
+ 			pilot.addLap(lap);
 		}
  		
+ 	}
+
+	private Lap createLap(CSVObject csvObject, Pilot pilot) {
+		
+		LocalTime localTime = LocalTime.parse(csvObject.getColumn1()); 
+		Integer lapNumber = new Integer(csvObject.getColumn4());
+		LocalTime timeLap = LocalTime.parse(csvObject.getColumn5());
+		Double averageTimeLap = Double.valueOf(csvObject.getColumn6());
+		
+		Lap lap = new Lap(lapNumber, pilot, localTime, timeLap, averageTimeLap);
+		return lap;
+	}
+
+	private Pilot createPilot(CSVObject csvObject) {
+		String pilotCode = csvObject.getColumn2();
+		Pilot pilot = pilots.get(pilotCode);
+		if(pilots.isEmpty()){
+			this.pilots.put(pilotCode, pilot);
+		}else if(pilots.get(pilotCode) == null){
+			pilots.put(pilotCode, pilot);
+		}
+		return pilot;
+	}
+ 	
+ 	public void raceResults(){
+ 		for (Lap lap : laps) {
+			
+		}
  	}
  	
  }
