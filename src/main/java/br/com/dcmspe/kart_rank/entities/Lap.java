@@ -12,14 +12,14 @@ package br.com.dcmspe.kart_rank.entities;
  	
  	private final LocalTime timeLap;
  	
- 	private final Long averageTimeLape;
+ 	private final Double averageTimeLap;
  	
- 	public Lap(Integer lapNumber, Pilot pilot, LocalTime localTime, LocalTime timeLap, Long averageTimeLape) {
+ 	public Lap(Integer lapNumber, Pilot pilot, LocalTime localTime, LocalTime timeLap, Double averageTimeLap) {
  		this.lapNumber = lapNumber;
  		this.pilot = pilot;
  		this.localTime = localTime;
  		this.timeLap = timeLap;
- 		this.averageTimeLape = averageTimeLape;
+ 		this.averageTimeLap = averageTimeLap;
  	}
  	
  	public Pilot getPilot() {
@@ -30,8 +30,8 @@ package br.com.dcmspe.kart_rank.entities;
  	public LocalTime getLocalTime() {
  		return localTime;
  	}
- 	public Long getAverageTimeLape() {
- 		return averageTimeLape;
+ 	public Double getAverageTimeLap() {
+ 		return averageTimeLap;
  	}
  	
  
