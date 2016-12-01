@@ -76,5 +76,16 @@ import br.com.dcmspe.kart_rank.helpers.CSVObject;
 			
 		}
  	}
+
+	public List<Pilot> getWinners() {
+		
+		for (Pilot pilot : this.pilots) {
+			LocalTime lapsTotalTime = LocalTime.of(0,0,0,0);
+			for (Lap lap : pilot.getLaps()) {
+				
+			}
+		}
+		return null;
+	}
  	
  }
