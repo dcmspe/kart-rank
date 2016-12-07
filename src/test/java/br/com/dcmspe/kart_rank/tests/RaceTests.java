@@ -23,15 +23,15 @@ import br.com.dcmspe.kart_rank.helpers.FileHelper;
  	}
  	
  	@Test
- 	public void should_determine_the_winners_from_race(){
+ 	public void should_get_laps_from_a_pilot(){
  		
  		List<CSVObject> csvObjects = FileHelper.readKartCSVFile();
  		Race race = new Race(csvObjects);
  		
- 		List<Pilot> winners = race.getWinners();
+ 		for (Pilot pilot : race.getPilots().values()) {
+			System.out.println(pilot.getName());
+		}
  		
- 		
- 	
  		Assert.fail();
  	}
  	
