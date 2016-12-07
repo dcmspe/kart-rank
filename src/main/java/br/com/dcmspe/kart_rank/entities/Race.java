@@ -2,14 +2,11 @@ package br.com.dcmspe.kart_rank.entities;
 
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.joda.time.Duration;
 import org.joda.time.LocalTime;
@@ -178,15 +175,15 @@ public class Race {
 		return finishersByOrder;
 	}
 
-	private Map<Pilot, Duration> orderFinishersCollection(Map<Pilot, Duration> finishersByDuration) {
+	private Map<Pilot, Duration> orderFinishersCollection(Map<Pilot, Duration> unsorted) {
 		
+		Map<Pilot, Duration> result = new LinkedHashMap<>();
 		
-		Comparator<Entry<Pilot, Duration>> byValue = (entry1, entry2) -> entry1.getValue().compareTo(
-		            entry2.getValue());
+		unsorted.entrySet().stream()
+				.sorted(Map.Entry.<Pilot, Duration>comparingByValue())
+				.forEachOrdered(map -> result.put(map.getKey(), map.getValue()));
 		
-		Stream<Map.Entry<Pilot,Duration>> entries = finishersByDuration.entrySet().stream().sorted(byValue);
-		
-		return entries.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
+		return result;
 	}
 
 	private Map<Pilot, Duration> caculateTotalLapsFromEachPilot(List<Pilot> finishers) {
@@ -194,11 +191,11 @@ public class Race {
 
 		for (Pilot pilot : finishers) {
 			List<Lap> laps = this.lapsFromPilot(pilot);
-			Duration total = Duration.ZERO;
+			long total = 0;
 			for (Lap lap : laps) {
-				total.plus(lap.getTimeLap().toStandardDuration());
+				total = total + lap.getTimeLap().toStandardDuration().getMillis();
 			}
-			finishersByDuration.put(pilot, total);
+			finishersByDuration.put(pilot, Duration.millis(total));
 		}
 		return finishersByDuration;
 	}

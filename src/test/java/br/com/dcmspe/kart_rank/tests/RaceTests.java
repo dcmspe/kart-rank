@@ -59,33 +59,28 @@ import br.com.dcmspe.kart_rank.helpers.FileHelper;
 		
 		List<Pilot> finishers = race.getFinishers();
 		
-		Assert.assertTrue(finishers.get(0).getName().equals("M.WEBBER"));
-		Assert.assertTrue(finishers.get(1).getName().equals("F.MASSA"));
-		Assert.assertTrue(finishers.get(2).getName().equals("F.ALONSO"));
-		Assert.assertTrue(finishers.get(3).getName().equals("R.BARRICHELLO"));
-		Assert.assertTrue(finishers.get(4).getName().equals("K.RAIKKONEN"));
+		for (Pilot pilot : finishers) {
+			System.out.println(pilot.getName());
+		}
+		
+		Assert.assertTrue(finishers.contains(race.getPilots().get("033")));
+		Assert.assertTrue(finishers.contains(race.getPilots().get("015")));
+		Assert.assertTrue(finishers.contains(race.getPilots().get("002")));
+		Assert.assertTrue(finishers.contains(race.getPilots().get("038")));
+		Assert.assertTrue(finishers.contains(race.getPilots().get("023")));
 		
  	}
 	
 	@Test 
-	public void should_determine_the_position_from_whose_finished_the_race(){
+	public void should_determine_the_winners_from_the_race(){
 		Race race = createRace();
-		
-		List<Pilot> finishers = race.getFinishers();
-		
-		for (Pilot pilot : finishers) {
-			System.out.println("Code: " + pilot.getCode() + " Name: " + pilot.getName());
-		}
 		
 		Map<Pilot, Duration> finishersByOrder = race.getFinishersByOrder();
 		
-		for (Map.Entry<Pilot, Duration> map : finishersByOrder.entrySet()) {
-			System.out.println("Duration: " + map.getValue() +  " Code: " + map.getKey().getCode() + " Name: " + map.getKey().getName());
-		}
-		
-		
-		Assert.fail();
-		
+		Pilot[] winners = finishersByOrder.keySet().toArray(new Pilot[finishersByOrder.keySet().size()]);
+		Assert.assertTrue(winners[0].getName().equals("F.MASSA"));
+		Assert.assertTrue(winners[1].getName().equals("K.RAIKKONEN"));
+		Assert.assertTrue(winners[2].getName().equals("R.BARRICHELLO"));
  	}
 	
 	private Race createRace() {
