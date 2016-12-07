@@ -164,6 +164,19 @@ public class Race {
 		}
 		return finishers;
 	}
+	
+	public List<Pilot> getUnfinishers() {
+
+		Map<Pilot, List<Lap>> lapsFromPilots = this.lapsFromPilots();
+		List<Pilot> unfinishers = new ArrayList<Pilot>();
+
+		for (Map.Entry<Pilot, List<Lap>> entry : lapsFromPilots.entrySet()) {
+			if (entry.getValue().size() < Race.NUMBER_OF_LAPS_TO_COMPLETE_THE_RACE) {
+				unfinishers.add(entry.getKey());
+			}
+		}
+		return unfinishers;
+	}
 
 	public Map<Pilot, Duration> getFinishersByOrder() {
 		List<Pilot> finishers = this.getFinishers();
@@ -198,6 +211,25 @@ public class Race {
 			finishersByDuration.put(pilot, Duration.millis(total));
 		}
 		return finishersByDuration;
+	}
+
+	public Map<Pilot, Duration> getUnfinishersByOrder() {
+		List<Pilot> unfinishers = this.getUnfinishers();
+
+		Map<Pilot, Duration> unfinishersByDuration = caculateTotalLapsFromEachPilot(unfinishers);
+
+		Map<Pilot, Duration> unfinishersByOrder = orderFinishersCollection(unfinishersByDuration);
+
+		return unfinishersByOrder;
+	}
+
+	public long totalTimeFromPilot(Pilot pilot) {
+		List<Lap> laps = this.lapsFromPilot(pilot);
+		long totalRaceTime = 0;
+		for (Lap lap : laps) {
+			totalRaceTime = totalRaceTime + lap.getTimeLap().toStandardDuration().getMillis();
+		}
+		return totalRaceTime;
 	}
 
 }

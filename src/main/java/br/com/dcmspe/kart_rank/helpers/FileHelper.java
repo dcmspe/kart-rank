@@ -1,5 +1,6 @@
 package br.com.dcmspe.kart_rank.helpers;
  
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,10 +9,14 @@ import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
  
  public abstract class FileHelper {
  
  	 public static final String PATH_TO_CSV_FILE = "./files/kart-rank.csv";
+ 	 
+ 	private static Logger log = LogManager.getLogger(FileHelper.class.getName());
 	 
 	 public static List<CSVObject> readKartCSVFile() {
  		List<CSVObject> csvObjects = new ArrayList<CSVObject>();
@@ -31,11 +36,29 @@ import org.apache.commons.csv.CSVRecord;
 			
 			return csvObjects;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
  		return csvObjects;
  	}
+	 
+	public static int countNumberLines(String path){
+		BufferedReader reader;
+		
+		int lines = 0;
+		try {
+			reader = new BufferedReader(new FileReader(path));
+			
+			while (reader.readLine() != null){ 
+				lines++;
+			}
+			reader.close();
+		} catch (IOException e) {
+			
+			log.error(e.getMessage());
+		}
+		
+		return lines;
+	}
  }

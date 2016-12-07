@@ -1,6 +1,8 @@
 package br.com.dcmspe.kart_rank.tests;
  
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import org.junit.Test;
 import br.com.dcmspe.kart_rank.entities.Lap;
 import br.com.dcmspe.kart_rank.entities.Pilot;
 import br.com.dcmspe.kart_rank.entities.Race;
+import br.com.dcmspe.kart_rank.entities.RaceResults;
 import br.com.dcmspe.kart_rank.helpers.CSVObject;
 import br.com.dcmspe.kart_rank.helpers.FileHelper;
  
@@ -59,10 +62,6 @@ import br.com.dcmspe.kart_rank.helpers.FileHelper;
 		
 		List<Pilot> finishers = race.getFinishers();
 		
-		for (Pilot pilot : finishers) {
-			System.out.println(pilot.getName());
-		}
-		
 		Assert.assertTrue(finishers.contains(race.getPilots().get("033")));
 		Assert.assertTrue(finishers.contains(race.getPilots().get("015")));
 		Assert.assertTrue(finishers.contains(race.getPilots().get("002")));
@@ -82,6 +81,32 @@ import br.com.dcmspe.kart_rank.helpers.FileHelper;
 		Assert.assertTrue(winners[1].getName().equals("K.RAIKKONEN"));
 		Assert.assertTrue(winners[2].getName().equals("R.BARRICHELLO"));
  	}
+	
+	@Test
+	public void should_prove_that_vettel_did_not_finished_the_race(){
+		Race race = createRace();
+		
+		List<Pilot> finishers = race.getFinishers();
+		
+		Assert.assertFalse(finishers.contains(race.getPilots().get("011")));
+ 	}
+	
+	@Test 
+	public void should_write_a_logger_file_with_results_of_race(){
+		Race race = createRace();
+		
+		RaceResults results = new RaceResults(race);
+		
+		results.generateLogForResults();
+		
+		Path path = Paths.get("logs/race_results.log");
+		
+		Assert.assertTrue(path.toFile().exists());
+		Assert.assertTrue(FileHelper.countNumberLines(path.toString()) >= 6);
+		
+ 	}
+	
+	
 	
 	private Race createRace() {
 		List<CSVObject> csvObjects = FileHelper.readKartCSVFile();
