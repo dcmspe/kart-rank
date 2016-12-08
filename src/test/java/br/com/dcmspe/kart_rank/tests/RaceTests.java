@@ -13,7 +13,7 @@ import org.junit.Test;
 import br.com.dcmspe.kart_rank.entities.Lap;
 import br.com.dcmspe.kart_rank.entities.Pilot;
 import br.com.dcmspe.kart_rank.entities.Race;
-import br.com.dcmspe.kart_rank.entities.RaceResults;
+import br.com.dcmspe.kart_rank.helpers.RaceResultsLog;
 import br.com.dcmspe.kart_rank.helpers.CSVObject;
 import br.com.dcmspe.kart_rank.helpers.FileHelper;
  
@@ -95,7 +95,7 @@ import br.com.dcmspe.kart_rank.helpers.FileHelper;
 	public void should_write_a_logger_file_with_results_of_race(){
 		Race race = createRace();
 		
-		RaceResults results = new RaceResults(race);
+		RaceResultsLog results = new RaceResultsLog(race);
 		
 		results.generateLogForResults();
 		

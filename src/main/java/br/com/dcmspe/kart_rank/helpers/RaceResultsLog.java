@@ -1,4 +1,4 @@
-package br.com.dcmspe.kart_rank.entities;
+package br.com.dcmspe.kart_rank.helpers;
 
 import java.util.Map;
 
@@ -6,7 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.Duration;
 
-public class RaceResults {
+import br.com.dcmspe.kart_rank.entities.Pilot;
+import br.com.dcmspe.kart_rank.entities.Race;
+
+public class RaceResultsLog {
 
 	private final Map<Pilot, Duration> finishers;
 	
@@ -14,9 +17,9 @@ public class RaceResults {
 	
 	private final Race race;
 	
-	private static Logger log = LogManager.getLogger(RaceResults.class.getName());
+	private static Logger log = LogManager.getLogger(RaceResultsLog.class.getName());
 	
-	public RaceResults(Race race) {
+	public RaceResultsLog(Race race) {
 		this.race = race;
 		
 		this.finishers = race.getFinishersByOrder();

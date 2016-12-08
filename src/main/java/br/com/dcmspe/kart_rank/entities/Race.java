@@ -9,24 +9,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.joda.time.Duration;
-import org.joda.time.LocalTime;
-import org.joda.time.Period;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
 
 import br.com.dcmspe.kart_rank.helpers.CSVObject;
+import br.com.dcmspe.kart_rank.helpers.RaceFactoryEntities;
 
 public class Race {
-
+	
 	/**
 	 * List of pilots
 	 */
-	private final HashMap<String, Pilot> pilots;
-
+	public HashMap<String, Pilot> pilots;
 	/**
 	 * List of laps
 	 */
-	private final List<Lap> laps;
+	public List<Lap> laps;
 
 	/**
 	 * Number of laps to complete a race
@@ -49,7 +45,7 @@ public class Race {
 
 		this.pilots = new LinkedHashMap<String, Pilot>();
 		this.laps = new ArrayList<Lap>();
-		this.createEntities(csvObjects);
+		RaceFactoryEntities.createEntities(csvObjects, pilots, laps);
 	}
 
 	/**
@@ -68,77 +64,10 @@ public class Race {
 		return laps;
 	}
 
-	private void createEntities(List<CSVObject> csvObjects) {
-		for (CSVObject csvObject : csvObjects) {
-
-			Pilot pilot = factoryPilot(csvObject);
-
-			factoryLap(csvObject, pilot);
-		}
-
-	}
-
-	private void factoryLap(CSVObject csvObject, Pilot pilot) {
-		Lap lap = generateLap(csvObject, pilot);
-
-		this.insertLap(lap);
-	}
-
-	private Lap generateLap(CSVObject csvObject, Pilot pilot) {
-		LocalTime localTime = LocalTime.parse(csvObject.getColumn1());
-		
-		Integer lapNumber = new Integer(csvObject.getColumn4());
-		
-		Period lapTime = createPeriod(csvObject.getColumn5());
-		Double averageTimeLap = Double.valueOf(csvObject.getColumn6());
-
-		Lap lap = new Lap(lapNumber, pilot, localTime, lapTime, averageTimeLap);
-		return lap;
-	}
-	
-	private Period createPeriod(String stringPeriod){
-		PeriodFormatter formatter = new PeriodFormatterBuilder()
-				.appendHours()
-				.appendSeparator(":")
-				.appendMinutes()
-				.appendSeparator(":")
-				.appendSeconds()
-				.appendSeparator(".")
-				.appendMillis().toFormatter();
-		return formatter.parsePeriod(stringPeriod);
-	}
-
-	private void insertLap(Lap lap) {
-		this.laps.add(lap);
-	}
-
-	private Pilot factoryPilot(CSVObject csvObject) {
-		String pilotCode = csvObject.getColumn2();
-
-		Pilot pilot = pilots.get(pilotCode);
-		if (pilots.isEmpty()) {
-			pilot = createPilot(csvObject);
-			insertPilot(pilotCode, pilot);
-
-		} else if (pilots.get(pilotCode) == null) {
-			pilot = createPilot(csvObject);
-			insertPilot(pilotCode, pilot);
-		}
-		return pilot;
-	}
-
-	private void insertPilot(String pilotCode, Pilot pilot) {
-		this.pilots.put(pilotCode, pilot);
-	}
-
-	private Pilot createPilot(CSVObject csvObject) {
-		return new Pilot(csvObject.getColumn2(), csvObject.getColumn3());
-	}
-
 	public Map<Pilot, List<Lap>> lapsFromPilots() {
 		Map<Pilot, List<Lap>> lapsFromPilots = new HashMap<Pilot, List<Lap>>();
 
-		for (Pilot pilot : this.pilots.values()) {
+		for (Pilot pilot : pilots.values()) {
 			List<Lap> lapsFromPilot = lapsFromPilot(pilot);
 			lapsFromPilots.put(pilot, lapsFromPilot);
 

@@ -1,0 +1,12 @@
+2016-12-07 23:16:07.350 [main] TRACE br.com.dcmspe.kart_rank.entities.RaceResults - Posição: 1 Código do Piloto: 038 Nome do Piloto: F.MASSA Quantidade de Voltas: 4 Tempo Total de Prova: 251578 
+2016-12-07 23:16:07.352 [main] TRACE br.com.dcmspe.kart_rank.entities.RaceResults - Posição: 2 Código do Piloto: 002 Nome do Piloto: K.RAIKKONEN Quantidade de Voltas: 4 Tempo Total de Prova: 255153 
+2016-12-07 23:16:07.352 [main] TRACE br.com.dcmspe.kart_rank.entities.RaceResults - Posição: 3 Código do Piloto: 033 Nome do Piloto: R.BARRICHELLO Quantidade de Voltas: 4 Tempo Total de Prova: 256080 
+2016-12-07 23:16:07.352 [main] TRACE br.com.dcmspe.kart_rank.entities.RaceResults - Posição: 4 Código do Piloto: 023 Nome do Piloto: M.WEBBER Quantidade de Voltas: 4 Tempo Total de Prova: 257722 
+2016-12-07 23:16:07.352 [main] TRACE br.com.dcmspe.kart_rank.entities.RaceResults - Posição: 5 Código do Piloto: 015 Nome do Piloto: F.ALONSO Quantidade de Voltas: 4 Tempo Total de Prova: 294221 
+2016-12-07 23:16:07.353 [main] TRACE br.com.dcmspe.kart_rank.entities.RaceResults - Posição: * Código do Piloto: 011 Nome do Piloto: S.VETTEL Quantidade de Voltas: 3 Tempo Total de Prova: 387276 
+2016-12-07 23:20:44.335 [main] TRACE br.com.dcmspe.kart_rank.helpers.RaceResultsLog - Posição: 1 Código do Piloto: 038 Nome do Piloto: F.MASSA Quantidade de Voltas: 4 Tempo Total de Prova: 251578 
+2016-12-07 23:20:44.337 [main] TRACE br.com.dcmspe.kart_rank.helpers.RaceResultsLog - Posição: 2 Código do Piloto: 002 Nome do Piloto: K.RAIKKONEN Quantidade de Voltas: 4 Tempo Total de Prova: 255153 
+2016-12-07 23:20:44.337 [main] TRACE br.com.dcmspe.kart_rank.helpers.RaceResultsLog - Posição: 3 Código do Piloto: 033 Nome do Piloto: R.BARRICHELLO Quantidade de Voltas: 4 Tempo Total de Prova: 256080 
+2016-12-07 23:20:44.337 [main] TRACE br.com.dcmspe.kart_rank.helpers.RaceResultsLog - Posição: 4 Código do Piloto: 023 Nome do Piloto: M.WEBBER Quantidade de Voltas: 4 Tempo Total de Prova: 257722 
+2016-12-07 23:20:44.337 [main] TRACE br.com.dcmspe.kart_rank.helpers.RaceResultsLog - Posição: 5 Código do Piloto: 015 Nome do Piloto: F.ALONSO Quantidade de Voltas: 4 Tempo Total de Prova: 294221 
+2016-12-07 23:20:44.338 [main] TRACE br.com.dcmspe.kart_rank.helpers.RaceResultsLog - Posição: * Código do Piloto: 011 Nome do Piloto: S.VETTEL Quantidade de Voltas: 3 Tempo Total de Prova: 387276 
