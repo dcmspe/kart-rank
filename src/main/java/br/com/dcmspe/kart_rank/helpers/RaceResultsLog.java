@@ -8,6 +8,7 @@ import org.joda.time.Duration;
 
 import br.com.dcmspe.kart_rank.entities.Pilot;
 import br.com.dcmspe.kart_rank.entities.Race;
+import br.com.dcmspe.kart_rank.tests.FormaterHelper;
 
 public class RaceResultsLog {
 
@@ -36,7 +37,8 @@ public class RaceResultsLog {
 			message.append("Código do Piloto: " + pilot.getCode() + " ");
 			message.append("Nome do Piloto: " + pilot.getName() + " ");
 			message.append("Quantidade de Voltas: " + race.lapsFromPilot(pilot).size() + " ");
-			message.append("Tempo Total de Prova: " + race.totalTimeFromPilot(pilot) + " ");
+			String totalTimeFormatted = FormaterHelper.longPeriodToString(race.totalTimeFromPilot(pilot));
+			message.append("Tempo Total de Prova: " + totalTimeFormatted + " ");
 			log.trace(message);
 			position++;
 		}
@@ -47,7 +49,8 @@ public class RaceResultsLog {
 			message.append("Código do Piloto: " + pilot.getCode() + " ");
 			message.append("Nome do Piloto: " + pilot.getName() + " ");
 			message.append("Quantidade de Voltas: " + race.lapsFromPilot(pilot).size() + " ");
-			message.append("Tempo Total de Prova: " + race.totalTimeFromPilot(pilot) + " ");
+			String totalTimeFormatted = FormaterHelper.longPeriodToString(race.totalTimeFromPilot(pilot));
+			message.append("Tempo Total de Prova: " + totalTimeFormatted + " ");
 			log.trace(message);
 		}
 		
