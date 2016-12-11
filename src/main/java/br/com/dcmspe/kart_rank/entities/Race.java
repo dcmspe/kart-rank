@@ -2,8 +2,10 @@ package br.com.dcmspe.kart_rank.entities;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -161,4 +163,36 @@ public class Race {
 		return totalRaceTime;
 	}
 
+	public List<Lap> bestLapFromEachPilot(){
+		List<Lap> bestLapFromEachPilot = new LinkedList<>();
+		System.out.println(this.pilots);
+		for (Map.Entry<String, Pilot> entry : this.pilots.entrySet()) {
+			List<Lap> laps = entry.getValue().getLaps();
+			Lap bestLap = laps.stream()
+            .min(new Comparator<Lap>() {
+				@Override
+				public int compare(Lap lap1, Lap lap2) {
+					Duration durationLap1 = lap1.getTimeLap().toStandardDuration();
+					Duration durationLap2 = lap2.getTimeLap().toStandardDuration();
+					return durationLap1.compareTo(durationLap2);
+				}
+			}).get();
+			bestLapFromEachPilot.add(bestLap);
+		}
+		
+		return bestLapFromEachPilot;
+	}
+	
+	public Map<String, Lap> bestLapFromEachPilotSortedByPilotCode(){
+		
+		Map<String, Lap> bestLapFromEachPilot = this.bestLapFromEachPilot().stream().collect(Collectors.toMap(lap -> lap.getPilot().getCode(), lap -> lap));
+		
+		Map<String, Lap> sortedBestLapFromEachPilot = new LinkedHashMap<>();
+		bestLapFromEachPilot.entrySet().stream().sorted(Map.Entry.<String, Lap>comparingByKey())
+        .forEachOrdered(entry -> sortedBestLapFromEachPilot.put(entry.getKey(), entry.getValue()));
+		
+		return sortedBestLapFromEachPilot;
+	}
+	
+	
 }

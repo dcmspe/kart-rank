@@ -13,9 +13,10 @@ import org.junit.Test;
 import br.com.dcmspe.kart_rank.entities.Lap;
 import br.com.dcmspe.kart_rank.entities.Pilot;
 import br.com.dcmspe.kart_rank.entities.Race;
-import br.com.dcmspe.kart_rank.helpers.RaceResultsLog;
 import br.com.dcmspe.kart_rank.helpers.CSVObject;
 import br.com.dcmspe.kart_rank.helpers.FileHelper;
+import br.com.dcmspe.kart_rank.helpers.FormaterHelper;
+import br.com.dcmspe.kart_rank.helpers.RaceResultsLog;
  
  public class RaceTests {
  
@@ -106,6 +107,27 @@ import br.com.dcmspe.kart_rank.helpers.FileHelper;
 		
  	}
 	
+	@Test
+	public void shoud_retrieve_the_best_lap_from_each_pilot(){
+		Race race = createRace();
+		
+		Map<String, Lap> bestLapFromEachPilotSorted = race.bestLapFromEachPilotSortedByPilotCode();
+		
+		String bestTilePilot1 = FormaterHelper.longPeriodToString(bestLapFromEachPilotSorted.get("011").getTimeLap().toStandardDuration().getMillis());
+		String bestTilePilot2 = FormaterHelper.longPeriodToString(bestLapFromEachPilotSorted.get("033").getTimeLap().toStandardDuration().getMillis());
+		String bestTilePilot3 = FormaterHelper.longPeriodToString(bestLapFromEachPilotSorted.get("023").getTimeLap().toStandardDuration().getMillis());
+		String bestTilePilot4 = FormaterHelper.longPeriodToString(bestLapFromEachPilotSorted.get("002").getTimeLap().toStandardDuration().getMillis());
+		String bestTilePilot5 = FormaterHelper.longPeriodToString(bestLapFromEachPilotSorted.get("015").getTimeLap().toStandardDuration().getMillis());
+		String bestTilePilot6 = FormaterHelper.longPeriodToString(bestLapFromEachPilotSorted.get("038").getTimeLap().toStandardDuration().getMillis());
+		
+		
+		Assert.assertTrue(bestTilePilot1.equals("1:18.097"));
+		Assert.assertTrue(bestTilePilot2.equals("1:3.716"));
+		Assert.assertTrue(bestTilePilot3.equals("1:4.216"));
+		Assert.assertTrue(bestTilePilot4.equals("1:3.076"));
+		Assert.assertTrue(bestTilePilot5.equals("1:7.011"));
+		Assert.assertTrue(bestTilePilot6.equals("1:2.769"));
+	}
 	
 	
 	private Race createRace() {

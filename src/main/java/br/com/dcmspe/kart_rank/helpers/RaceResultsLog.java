@@ -8,7 +8,6 @@ import org.joda.time.Duration;
 
 import br.com.dcmspe.kart_rank.entities.Pilot;
 import br.com.dcmspe.kart_rank.entities.Race;
-import br.com.dcmspe.kart_rank.tests.FormaterHelper;
 
 public class RaceResultsLog {
 

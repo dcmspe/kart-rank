@@ -3,7 +3,7 @@ package br.com.dcmspe.kart_rank.entities;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
 
-public class Lap {
+public class Lap{
 
 	private final Integer lapNumber;
 
@@ -42,5 +42,6 @@ public class Lap {
 	public Period getTimeLap() {
 		return timeLap;
 	}
+
 
 }

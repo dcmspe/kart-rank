@@ -29,6 +29,7 @@ public abstract class RaceFactoryEntities {
 		Lap lap = generateLap(csvObject, pilot);
 
 		laps.add(lap);
+		pilot.addLap(lap);
 	}
 	
 	private static Pilot factoryPilot(CSVObject csvObject, Map<String, Pilot> pilots) {
@@ -54,22 +55,11 @@ public abstract class RaceFactoryEntities {
 		
 		Integer lapNumber = new Integer(csvObject.getColumn4());
 		
-		Period lapTime = createPeriod(csvObject.getColumn5());
+		Period lapTime = FormaterHelper.createPeriod(csvObject.getColumn5());
 		Double averageTimeLap = Double.valueOf(csvObject.getColumn6());
 
 		Lap lap = new Lap(lapNumber, pilot, localTime, lapTime, averageTimeLap);
 		return lap;
 	}
-	
-	private static Period createPeriod(String stringPeriod){
-		PeriodFormatter formatter = new PeriodFormatterBuilder()
-				.appendHours()
-				.appendSeparator(":")
-				.appendMinutes()
-				.appendSeparator(":")
-				.appendSeconds()
-				.appendSeparator(".")
-				.appendMillis().toFormatter();
-		return formatter.parsePeriod(stringPeriod);
-	}
+
 }
