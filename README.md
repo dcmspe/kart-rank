@@ -1,10 +1,13 @@
 Solução
 ========
-* Como pedido, as saídas estão contidas nos arquivos de testes e no de log.
-* Os arquivos de teste então em: src/test/java
+* Como pedido, as saídas estão contidas nos arquivos de testes (./files/) e no de log (./log).
+* Os arquivos de teste estão em: src/test/java
 * Para rodar os testes, e baixar as dependências, use o comando 'gradle test'
 * Para instalar o gradle use este link (é necessário saber inglês): https://docs.gradle.org/current/userguide/installation.html
+* Por fim, rode e estou disposto para tirar dúvidas e melhorar o projeto.
+* Só ficou faltando os dois últimos extras.
 
+Abraços
 
 PROBLEMA
 ========
