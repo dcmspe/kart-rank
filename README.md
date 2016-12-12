@@ -1,3 +1,11 @@
+Solução
+========
+* Como pedido, as saídas estão contidas nos arquivos de testes e no de log.
+* Os arquivos de teste então em: src/test/java
+* Para rodar os testes, e baixar as dependências, use o comando 'gradle test'
+* Para instalar o gradle use este link (é necessário saber inglês): https://docs.gradle.org/current/userguide/installation.html
+
+
 PROBLEMA
 ========
 Dado o seguinte log de uma corrida de Kart:
@@ -45,13 +53,8 @@ Não obrigatório. Faça apenas caso se identifique com o problema ou se achar q
 
 **********************************************
 * Descobrir a melhor volta de cada piloto
-***********************************************
 * Descobrir a melhor volta da corrida
-************************************************
-* Calcular a velocidade média de cada piloto durante toda corrida
-************************************************************************
 * Descobrir quanto tempo cada piloto chegou após o vencedor
-))
 
 
 SOLUÇÃO
