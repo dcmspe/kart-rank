@@ -1,3 +1,11 @@
+Solução
+========
+* Como pedido, as saídas estão contidas nos arquivos de testes e no de log.
+* Os arquivos de teste então em: src/test/java
+* Para rodar os testes, e baixar as dependências, use o comando 'gradle test'
+* Para instalar o gradle use este link (é necessário saber inglês): https://docs.gradle.org/current/userguide/installation.html
+
+
 PROBLEMA
 ========
 Dado o seguinte log de uma corrida de Kart:
