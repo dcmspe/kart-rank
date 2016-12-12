@@ -28,4 +28,12 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
+	compile group: 'org.apache.commons', name: 'commons-csv', version: '1.4'
+	// https://mvnrepository.com/artifact/joda-time/joda-time
+	compile group: 'joda-time', name: 'joda-time', version: '2.9.6'
+	//http://logging.apache.org/log4j/2.0/maven-artifacts.html
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+	
 }

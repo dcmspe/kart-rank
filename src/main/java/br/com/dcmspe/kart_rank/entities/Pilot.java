@@ -1,27 +1,37 @@
 package br.com.dcmspe.kart_rank.entities;
- 
- public class Pilot {
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Pilot {
  	
- 	private String code;
+ 	private final String code;
  	
- 	private String name;
+ 	private final String name;
+ 	
+ 	private final List<Lap> laps;
  	
  	public String getName() {
  		return name;
  	}
- 	public void setName(String name) {
- 		this.name = name;
- 	}
- 	public Pilot(String code, String name) {
- 		super();
- 		this.code = code;
- 		this.name = name;
- 	}
- 	public String getCode() {
- 		return code;
- 	}
- 	public void setCode(String code) {
- 		this.code = code;
- 	}
- 	
+
+	public Pilot(String code, String name) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.laps = new ArrayList<Lap>();
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public List<Lap> getLaps() {
+		return laps;
+	}
+	
+	public void addLap(Lap lap) {
+		laps.add(lap);
+	}
+	
  }
